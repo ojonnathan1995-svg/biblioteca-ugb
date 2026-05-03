@@ -1,9 +1,9 @@
 <div class="container mt-5">
     <div class="card shadow-sm mb-4">
-        <div class="card-header text-center bg-primary text-white">
-            <h4 class="mb-0">{{ $isEditing ? 'Modificar Datos del Libro' : 'Gestión de Libros - UGB' }}</h4>
+        <div class="card-header text-center bg-primary text-white p-3">
+            <h4 class="mb-0 fw-bold">{{ $isEditing ? 'Modificar Datos del Libro' : 'Gestión de Libros - UGB' }}</h4>
         </div>
-        <div class="card-body bg-light">
+        <div class="card-body p-4" style="background-color: #f8f9fa;">
             <div class="row g-3">
                 <div class="col-md-12">
                     <label class="form-label fw-bold">Título</label>
@@ -21,7 +21,7 @@
                     @error('year') <span class="text-danger small">{{ $message }}</span> @enderror
                 </div>
                 <div class="col-12 mt-4">
-                    <button wire:click="save" class="btn {{ $isEditing ? 'btn-warning' : 'btn-success' }} w-100 fw-bold">
+                    <button wire:click="save" class="btn {{ $isEditing ? 'btn-warning' : 'btn-success' }} w-100 fw-bold py-2" style="background-color: #2d6a4f; border-color: #2d6a4f;">
                         {{ $isEditing ? 'Actualizar Cambios' : 'Guardar Libro' }}
                     </button>
                     @if($isEditing)
@@ -34,7 +34,7 @@
 
     <div class="table-responsive shadow-sm">
         <table class="table table-bordered align-middle mb-0">
-            <thead class="table-dark">
+            <thead class="table-dark" style="background-color: #212529;">
                 <tr>
                     <th style="width: 40%">Título</th>
                     <th style="width: 30%">Autor</th>
@@ -48,7 +48,7 @@
                     <td class="ps-3">{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
                     <td class="text-center">
-                        <span class="badge bg-info text-dark px-3">{{ $book->year }}</span>
+                        <span class="badge bg-info text-dark px-3" style="background-color: #74c0fc !important;">{{ $book->year }}</span>
                     </td>
                     <td class="text-center">
                         <div class="btn-group">

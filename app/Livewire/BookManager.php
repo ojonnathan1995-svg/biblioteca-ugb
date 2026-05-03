@@ -18,9 +18,9 @@ class BookManager extends Component
             'year'   => 'required|digits:4',
         ], [
             'title.required'  => 'El título es obligatorio.',
-            'author.required' => 'Escriba el autor.',
-            'year.required'   => 'El año es necesario.',
-            'year.digits'     => 'El año debe ser de 4 dígitos.',
+            'author.required' => 'Escriba el nombre del autor.',
+            'year.required'   => 'El año es obligatorio.',
+            'year.digits'     => 'El año debe ser de 4 números.',
         ]);
 
         if ($this->isEditing) {
