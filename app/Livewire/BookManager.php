@@ -12,20 +12,16 @@ class BookManager extends Component
 
     public function save()
     {
-        $rules = [
+        $this->validate([
             'title'  => 'required|min:3',
             'author' => 'required|min:3',
             'year'   => 'required|digits:4',
-        ];
-
-        $messages = [
-            'title.required'  => 'El título del libro es obligatorio.',
-            'author.required' => 'Debes escribir el nombre del autor.',
+        ], [
+            'title.required'  => 'El título es obligatorio.',
+            'author.required' => 'Escriba el autor.',
             'year.required'   => 'El año es necesario.',
-            'year.digits'     => 'El año debe ser de 4 números.',
-        ];
-
-        $this->validate($rules, $messages);
+            'year.digits'     => 'El año debe ser de 4 dígitos.',
+        ]);
 
         if ($this->isEditing) {
             $book = Book::find($this->book_id);
