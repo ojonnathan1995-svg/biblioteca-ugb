@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="card shadow-sm mb-4">
         <div class="card-header text-center bg-primary text-white p-3">
-            <h4 class="mb-0 fw-bold">{{ $isEditing ? 'Modificar Datos del Libro' : 'Gestión de Libros - UGB' }}</h4>
+            <h4 class="mb-0 fw-bold">📚 Gestión de Libros - UGB</h4>
         </div>
         <div class="card-body p-4" style="background-color: #f8f9fa;">
             <div class="row g-3">
@@ -34,7 +34,7 @@
 
     <div class="table-responsive shadow-sm">
         <table class="table table-bordered align-middle mb-0">
-            <thead class="table-dark" style="background-color: #212529;">
+            <thead class="table-dark">
                 <tr>
                     <th style="width: 40%">Título</th>
                     <th style="width: 30%">Autor</th>
