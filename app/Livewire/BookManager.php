@@ -12,26 +12,22 @@ class BookManager extends Component
 
     public function save()
     {
-        // Tus reglas de validación originales
         $rules = [
             'title'  => 'required|min:3',
             'author' => 'required|min:3',
             'year'   => 'required|digits:4',
         ];
 
-        // Tus mensajes personalizados
         $messages = [
             'title.required'  => 'El título del libro es obligatorio.',
-            'title.min'       => 'El título debe tener al menos 3 letras.',
             'author.required' => 'Debes escribir el nombre del autor.',
-            'year.required'   => 'El año es necesario para el registro.',
+            'year.required'   => 'El año es necesario.',
             'year.digits'     => 'El año debe ser de 4 números.',
         ];
 
         $this->validate($rules, $messages);
 
         if ($this->isEditing) {
-            // Lógica para ACTUALIZAR
             $book = Book::find($this->book_id);
             $book->update([
                 'title'  => $this->title,
@@ -40,7 +36,6 @@ class BookManager extends Component
             ]);
             $this->isEditing = false;
         } else {
-            // Lógica para GUARDAR NUEVO
             Book::create([
                 'title'  => $this->title,
                 'author' => $this->author,
@@ -48,7 +43,6 @@ class BookManager extends Component
             ]);
         }
 
-        // Limpiamos los campos
         $this->reset(['title', 'author', 'year', 'book_id']);
     }
 

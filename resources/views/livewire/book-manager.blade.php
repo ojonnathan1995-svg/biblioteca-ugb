@@ -1,57 +1,57 @@
-<div class="container mt-5">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">{{ $isEditing ? 'Editar Libro' : 'Gestión de Libros - UGB' }}</h4>
-        </div>
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1>📚 Mi Biblioteca</h1>
+        <p class="text-muted">Administra tus libros fácilmente</p>
+    </div>
+
+    <div class="card shadow-sm mb-4">
         <div class="card-body">
-            <div class="row g-3">
+            <h5 class="card-title mb-3">{{ $isEditing ? 'Editar libro' : 'Agregar libro' }}</h5>
+            <div class="row g-2">
                 <div class="col-md-4">
-                    <label class="form-label">Título</label>
-                    <input type="text" wire:model="title" class="form-control">
-                    @error('title') <span class="text-danger small">{{ $message }}</span> @enderror
+                    <input type="text" wire:model="title" class="form-control" placeholder="Título">
+                    @error('title') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">Autor</label>
-                    <input type="text" wire:model="author" class="form-control">
-                    @error('author') <span class="text-danger small">{{ $message }}</span> @enderror
+                    <input type="text" wire:model="author" class="form-control" placeholder="Autor">
+                    @error('author') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Año</label>
-                    <input type="text" wire:model="year" class="form-control">
-                    @error('year') <span class="text-danger small">{{ $message }}</span> @enderror
+                    <input type="text" wire:model="year" class="form-control" placeholder="Año">
+                    @error('year') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button wire:click="save" class="btn {{ $isEditing ? 'btn-warning' : 'btn-success' }} w-100">
-                        {{ $isEditing ? 'Actualizar' : 'Guardar Libro' }}
+                <div class="col-md-2">
+                    <button wire:click="save" class="btn {{ $isEditing ? 'btn-warning' : 'btn-primary' }} w-100">
+                        <i class="bi bi-download"></i> {{ $isEditing ? 'Actualizar' : 'Guardar' }}
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="mt-4">
-        <table class="table table-hover shadow-sm bg-white">
-            <thead class="table-dark">
-                <tr>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Año</th>
-                    <th class="text-center">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($books as $book)
-                <tr>
-                    <td>{{ $book->title }}</td>
-                    <td>{{ $book->author }}</td>
-                    <td><span class="badge bg-info text-dark">{{ $book->year }}</span></td>
-                    <td class="text-center">
-                        <button wire:click="edit({{ $book->id }})" class="btn btn-sm btn-outline-warning">Editar</button>
-                        <button wire:click="delete({{ $book->id }})" class="btn btn-sm btn-outline-danger" onclick="confirm('¿Eliminar este libro?') || event.stopImmediatePropagation()">Eliminar</button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center bg-white">
+            <h5 class="mb-0">Libros</h5>
+            <span class="badge bg-primary rounded-pill">{{ $books->count() }}</span>
+        </div>
+        <ul class="list-group list-group-flush">
+            @foreach($books as $book)
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ $book->title }}</strong><br>
+                    <small class="text-muted">{{ $book->author }}</small>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-secondary me-3">Libro</span>
+                    <button wire:click="edit({{ $book->id }})" class="btn btn-sm btn-outline-warning me-1">
+                        Editar
+                    </button>
+                    <button wire:click="delete({{ $book->id }})" class="btn btn-sm btn-outline-danger" onclick="confirm('¿Eliminar?') || event.stopImmediatePropagation()">
+                        Eliminar
+                    </button>
+                </div>
+            </li>
+            @endforeach
+        </ul>
     </div>
 </div>
